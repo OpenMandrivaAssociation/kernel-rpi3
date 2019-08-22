@@ -55,12 +55,14 @@ popd
 %install
 # 2-1. Destination directories
 mkdir -p %{buildroot}/boot/broadcom
+mkdir -p %{buildroot}/boot/overlays
 mkdir -p %{buildroot}/lib/modules
 
 pushd linux
 # 2-2. Install kernel binary and DTB
 install -m 644 arch/%{buildarch}/boot/Image %{buildroot}/boot/kernel8.img
 install -m 644 arch/%{buildarch}/boot/dts/broadcom/bcm*.dtb %{buildroot}/boot/
+install -m644  arch/arm/boot/dts/overlays/*.dtb* overlays/
 
 # 2-3. Install modules
 make INSTALL_MOD_STRIP=1 INSTALL_MOD_PATH=%{buildroot} modules_install
@@ -109,7 +111,6 @@ curl -L https://github.com/raspberrypi/firmware/raw/master/boot/start.elf --outp
 curl -L https://github.com/raspberrypi/firmware/raw/master/boot/start_cd.elf --output %{buildroot}/boot/start_cd.elf
 curl -L https://github.com/raspberrypi/firmware/raw/master/boot/start_db.elf --output %{buildroot}/boot/start_db.elf
 
-
 %files
 /boot/kernel8.img
 /boot/bcm*.dtb
@@ -118,6 +119,7 @@ curl -L https://github.com/raspberrypi/firmware/raw/master/boot/start_db.elf --o
 /boot/bootcode.bin
 /boot/start*.elf
 /boot/fixup*.dat
+/boot/overlays/*.dtb*
 
 %files modules
 /lib/modules/*
