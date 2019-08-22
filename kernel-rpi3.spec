@@ -60,7 +60,7 @@ mkdir -p %{buildroot}/lib/modules
 pushd linux
 # 2-2. Install kernel binary and DTB
 install -m 644 arch/%{buildarch}/boot/Image %{buildroot}/boot/kernel8.img
-install -m 644 arch/%{buildarch}/boot/dts/broadcom/bcm*.dtb %{buildroot}/boot/broadcom
+install -m 644 arch/%{buildarch}/boot/dts/broadcom/bcm*.dtb %{buildroot}/boot/
 
 # 2-3. Install modules
 make INSTALL_MOD_STRIP=1 INSTALL_MOD_PATH=%{buildroot} modules_install
@@ -77,13 +77,11 @@ EOF
 cat <<EOF > %{buildroot}/boot/config.txt
 # See
 # https://www.raspberrypi.org/documentation/configuration/config-txt
-kernel=kernel8.img
-device_tree=broadcom/bcm2710-rpi-3-b-plus.dtb
-# Serial console output!
-enable_uart=1
-# 64bit-mode
 arm_64bit=1
+kernel=kernel8.img
 dtoverlay=vc4-kms-v3d-overlay
+# enable serial
+enable_uart=1
 # Force the monitor to HDMI mode so that sound will be sent over HDMI cable
 hdmi_drive=2
 # Set monitor mode to DMT
@@ -102,7 +100,6 @@ dtparam=spi=on
 dtparam=audio=on
 EOF
 
-
 curl -L https://github.com/raspberrypi/firmware/raw/master/boot/bootcode.bin --output %{buildroot}/boot/bootcode.bin
 curl -L https://github.com/raspberrypi/firmware/raw/master/boot/fixup.dat --output %{buildroot}/boot/fixup.dat 
 curl -L https://github.com/raspberrypi/firmware/raw/master/boot/fixup_cd.dat --output %{buildroot}/boot/fixup_cd.dat
@@ -115,7 +112,7 @@ curl -L https://github.com/raspberrypi/firmware/raw/master/boot/start_db.elf --o
 
 %files
 /boot/kernel8.img
-/boot/broadcom/bcm*.dtb
+/boot/bcm*.dtb
 /boot/config.txt
 /boot/cmdline.txt
 /boot/bootcode.bin
