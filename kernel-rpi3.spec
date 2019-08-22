@@ -14,6 +14,7 @@ ExclusiveArch: aarch64
 
 BuildRequires: bc
 BuildRequires: git
+BuildRequires: curl
 BuildRequires: u-boot-tools >= 2016.03
 BuildRequires: bison
 BuildRequires: flex
