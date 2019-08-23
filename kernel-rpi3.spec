@@ -62,7 +62,7 @@ mkdir -p %{buildroot}/lib/modules
 
 pushd linux
 # 2-2. Install kernel binary and DTB
-install -m 644 arch/%{buildarch}/boot/Image %{buildroot}/boot/kernel8.img
+install -m 644 arch/%{buildarch}/boot/Image %{buildroot}/boot/%{name}-%{version}-%{release}.img
 install -m 644 arch/%{buildarch}/boot/dts/broadcom/bcm*.dtb %{buildroot}/boot/
 install -m644  arch/arm/boot/dts/overlays/*.dtb* overlays/
 
@@ -82,7 +82,7 @@ cat <<EOF > %{buildroot}/boot/config.txt
 # See
 # https://www.raspberrypi.org/documentation/configuration/config-txt
 arm_64bit=1
-kernel=kernel8.img
+kernel=%{name}-%{version}-%{release}.img
 dtoverlay=vc4-kms-v3d-overlay
 # enable serial
 enable_uart=1
@@ -114,7 +114,7 @@ curl -L https://github.com/raspberrypi/firmware/raw/master/boot/start_cd.elf --o
 curl -L https://github.com/raspberrypi/firmware/raw/master/boot/start_db.elf --output %{buildroot}/boot/start_db.elf
 
 %files
-/boot/kernel8.img
+/boot/%{name}-%{version}-%{release}.img
 /boot/bcm*.dtb
 /boot/config.txt
 /boot/cmdline.txt
