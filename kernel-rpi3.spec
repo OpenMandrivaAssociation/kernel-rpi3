@@ -4,12 +4,12 @@
 
 Name: kernel-rpi3
 Summary: The Linux Kernel for Raspberry Pi3
-Version: 4.19.66
+Version: 4.19.67
 Release: 1
 License: GPL-2.0
 Vendor: The Linux Community
 URL: https://www.kernel.org
-ExclusiveArch: aarch64
+#ExclusiveArch: aarch64
 Source0: conform_config-rpi-4.19.y.sh
 
 BuildRequires: bc
@@ -114,12 +114,11 @@ curl -L https://github.com/raspberrypi/firmware/raw/master/boot/start_cd.elf --o
 curl -L https://github.com/raspberrypi/firmware/raw/master/boot/start_db.elf --output %{buildroot}/boot/start_db.elf
 
 %post
-/sbin/dracut --gzip -o ifcfg -o lvm -o mdraid i\
-	-o aufs-mount -o network -o dm -o crypt \
-	-o dmraid -o multipath -o multipath-hostonly \
-	--fstab --add-fstab /etc/fstab -f /boot/initrd-%{version}-%{release}.img %{version}-%{release}
-
-chmod 0644 %{buildroot}/boot/initrd-%{version}-%{release}.img
+#/sbin/dracut --gzip -o ifcfg -o lvm -o mdraid i\
+#	-o aufs-mount -o network -o dm -o crypt \
+#	-o dmraid -o multipath -o multipath-hostonly \
+#	--fstab --add-fstab /etc/fstab -f /boot/initrd-%{version}-%{release}.img %{version}-%{release}
+#chmod 0644 %{buildroot}/boot/initrd-%{version}-%{release}.img
 
 /sbin/depmod -a
 
