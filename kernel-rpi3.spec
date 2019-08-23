@@ -64,7 +64,7 @@ pushd linux
 # 2-2. Install kernel binary and DTB
 install -m 644 arch/%{buildarch}/boot/Image %{buildroot}/boot/%{name}-%{version}-%{release}.img
 install -m 644 arch/%{buildarch}/boot/dts/broadcom/bcm*.dtb %{buildroot}/boot/
-install -m644  arch/arm/boot/dts/overlays/*.dtb* overlays/
+install -m644  arch/arm/boot/dts/overlays/*.dtb* %{buildroot}/boot/overlays
 
 # 2-3. Install modules
 make INSTALL_MOD_STRIP=1 INSTALL_MOD_PATH=%{buildroot} modules_install
