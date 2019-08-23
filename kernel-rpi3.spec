@@ -46,7 +46,8 @@ git clone --depth 1 https://github.com/raspberrypi/linux.git
 pushd linux
 # 1-1. Set config file
 %make_build bcmrpi3_defconfig
-sh %{SOURCE0} .config
+#sh %{SOURCE0} .config
+sed -i 's!-v8!!g' .config
 # 1-2. Build Image/Image.gz
 %make_build CC=gcc CXX=g++ CFLAGS="%{optflags}"
 # 1-3. Build dtbs & modules
