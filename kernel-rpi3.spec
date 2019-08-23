@@ -9,7 +9,7 @@ Release: 1
 License: GPL-2.0
 Vendor: The Linux Community
 URL: https://www.kernel.org
-#ExclusiveArch: aarch64
+ExclusiveArch: aarch64
 Source0: conform_config-rpi-4.19.y.sh
 
 BuildRequires: bc
