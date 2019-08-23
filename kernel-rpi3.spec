@@ -10,6 +10,7 @@ License: GPL-2.0
 Vendor: The Linux Community
 URL: https://www.kernel.org
 ExclusiveArch: aarch64
+Source0: conform_config-rpi-4.19.y.sh
 
 BuildRequires: bc
 BuildRequires: git
@@ -18,8 +19,6 @@ BuildRequires: u-boot-tools >= 2016.03
 BuildRequires: bison
 BuildRequires: flex
 BuildRequires: openssl-devel
-
-Source0: bcmrpi3_extended.config
 
 %description
 The Linux Kernel, the operating system core itself
@@ -45,9 +44,9 @@ git clone --depth 1 https://github.com/raspberrypi/linux.git
 
 %build
 pushd linux
-cp -fv %{SOURCE0} arch/arm64/configs/bcmrpi3_defconfig
 # 1-1. Set config file
 %make_build bcmrpi3_defconfig
+sh %{SOURCE0} .config
 # 1-2. Build Image/Image.gz
 %make_build CC=gcc CXX=g++ CFLAGS="%{optflags}"
 # 1-3. Build dtbs & modules
