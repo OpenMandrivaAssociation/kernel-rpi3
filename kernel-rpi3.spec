@@ -7,7 +7,6 @@ Summary: The Linux Kernel for Raspberry Pi3
 Version: 4.19.66
 Release: 1
 License: GPL-2.0
-ExclusiveArch: aarch64
 Vendor: The Linux Community
 URL: https://www.kernel.org
 ExclusiveArch: aarch64
@@ -19,6 +18,8 @@ BuildRequires: u-boot-tools >= 2016.03
 BuildRequires: bison
 BuildRequires: flex
 BuildRequires: openssl-devel
+
+Source0: bcmrpi3_extended.config
 
 %description
 The Linux Kernel, the operating system core itself
@@ -40,10 +41,11 @@ Group: System/Kernel
 This package provides kernel map and etc information.
 
 %prep
+git clone --depth 1 https://github.com/raspberrypi/linux.git
 
 %build
-git clone --depth 1 https://github.com/raspberrypi/linux.git
 pushd linux
+cp -fv %{SOURCE0} arch/arm64/configs/bcmrpi3_defconfig
 # 1-1. Set config file
 %make_build bcmrpi3_defconfig
 # 1-2. Build Image/Image.gz
