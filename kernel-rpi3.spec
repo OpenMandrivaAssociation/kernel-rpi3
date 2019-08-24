@@ -47,6 +47,7 @@ This package provides kernel map and etc information.
 git clone --depth 1 https://github.com/raspberrypi/linux.git
 pushd linux
 %patch0 -p1
+%patch1 -p1
 popd
 
 %build
