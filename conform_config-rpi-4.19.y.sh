@@ -204,5 +204,3 @@ set_kernel_config CONFIG_DRM_VC4_HDMI_CEC y
 # required by PR#3144; should already be applied, but just to be safe
 set_kernel_config CONFIG_PCIE_BRCMSTB y
 set_kernel_config CONFIG_BCM2835_MMC y
-
-
