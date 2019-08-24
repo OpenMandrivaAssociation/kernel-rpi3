@@ -48,6 +48,9 @@ git clone --depth 1 https://github.com/raspberrypi/linux.git
 pushd linux
 %patch0 -p1
 %patch1 -p1
+# https://lkml.org/lkml/2019/8/2/167
+# fpie breaks build with latest binutils and gcc
+sed -i 's!-fpie!!g' drivers/firmware/efi/libstub/Makefile
 popd
 
 %build
@@ -57,9 +60,9 @@ pushd linux
 sh %{SOURCE0} .config
 sed -i 's!-v8!!g' .config
 # 1-2. Build Image/Image.gz
-%make_build CC=gcc CXX=g++ CFLAGS="%{optflags}"
+%make_build CC=gcc CXX=g++ CFLAGS="%{optflags}" LD="%{_target_platform}-ld.bfd"
 # 1-3. Build dtbs & modules
-%make_build dtbs modules CC=gcc CXX=g++ CFLAGS="%{optflags}"
+%make_build dtbs modules CC=gcc CXX=g++ CFLAGS="%{optflags}" LD="%{_target_platform}-ld.bfd"
 popd
 
 %install
