@@ -5,7 +5,7 @@
 Name: kernel-rpi3
 Summary: The Linux Kernel for Raspberry Pi3
 Version: 4.19.67
-Release: 2
+Release: 3
 License: GPL-2.0
 Vendor: The Linux Community
 URL: https://www.kernel.org
@@ -13,6 +13,8 @@ ExclusiveArch: aarch64
 Source0: conform_config-rpi-4.19.y.sh
 
 Patch0:	bb3582314c9d19f7b06c47b5d484cd8905da654b.patch
+# use bfd
+Patch1: 2a034bb1f7a1cb51d505ca2bb6860c8e57016a87.patch
 
 BuildRequires: bc
 BuildRequires: git
@@ -45,9 +47,6 @@ This package provides kernel map and etc information.
 git clone --depth 1 https://github.com/raspberrypi/linux.git
 pushd linux
 %patch0 -p1
-# https://lkml.org/lkml/2019/8/2/167
-# fpie breaks build with latest binutils and gcc
-sed -i 's!-fpie!!g' drivers/firmware/efi/libstub/Makefile
 popd
 
 %build
