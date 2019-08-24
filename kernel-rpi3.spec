@@ -5,12 +5,14 @@
 Name: kernel-rpi3
 Summary: The Linux Kernel for Raspberry Pi3
 Version: 4.19.67
-Release: 1
+Release: 2
 License: GPL-2.0
 Vendor: The Linux Community
 URL: https://www.kernel.org
 ExclusiveArch: aarch64
 Source0: conform_config-rpi-4.19.y.sh
+
+Patch0:	bb3582314c9d19f7b06c47b5d484cd8905da654b.patch
 
 BuildRequires: bc
 BuildRequires: git
@@ -41,6 +43,9 @@ This package provides kernel map and etc information.
 
 %prep
 git clone --depth 1 https://github.com/raspberrypi/linux.git
+pushd linux
+%patch0 -p1
+popd
 
 %build
 pushd linux
