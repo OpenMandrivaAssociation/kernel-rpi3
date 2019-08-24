@@ -45,6 +45,9 @@ This package provides kernel map and etc information.
 git clone --depth 1 https://github.com/raspberrypi/linux.git
 pushd linux
 %patch0 -p1
+# https://lkml.org/lkml/2019/8/2/167
+# fpie breaks build with latest binutils and gcc
+sed -i 's!-fpie!!g' drivers/firmware/efi/libstub/Makefile
 popd
 
 %build
