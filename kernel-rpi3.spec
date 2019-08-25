@@ -5,7 +5,7 @@
 Name: kernel-rpi3
 Summary: The Linux Kernel for Raspberry Pi3
 Version: 4.19.67
-Release: 3
+Release: 4
 License: GPL-2.0
 Vendor: The Linux Community
 URL: https://www.kernel.org
@@ -131,7 +131,7 @@ curl -L https://github.com/raspberrypi/firmware/raw/master/boot/start_db.elf --o
 #	--fstab --add-fstab /etc/fstab -f /boot/initrd-%{version}-%{release}.img %{version}-%{release}
 #chmod 0644 %{buildroot}/boot/initrd-%{version}-%{release}.img
 
-/sbin/depmod -a
+/sbin/depmod -a %{version}+
 
 %postun
 rm -fv /boot/initrd-%{version}-%{release}.img
