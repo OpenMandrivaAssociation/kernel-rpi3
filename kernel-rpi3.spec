@@ -4,8 +4,8 @@
 
 Name: kernel-rpi3
 Summary: The Linux Kernel for Raspberry Pi3
-Version: 4.19.67
-Release: 4
+Version: 4.19.68
+Release: 1
 License: GPL-2.0
 Vendor: The Linux Community
 URL: https://www.kernel.org
