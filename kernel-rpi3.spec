@@ -94,7 +94,7 @@ cat <<EOF > %{buildroot}/boot/config.txt
 # https://www.raspberrypi.org/documentation/configuration/config-txt
 arm_64bit=1
 kernel=%{name}-%{version}-%{release}.img
-dtoverlay=vc4-kms-v3d-overlay
+dtoverlay=vc4-kms-v3d
 # enable serial
 enable_uart=1
 # Force the monitor to HDMI mode so that sound will be sent over HDMI cable
