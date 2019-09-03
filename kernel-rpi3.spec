@@ -102,12 +102,14 @@ hdmi_drive=2
 # Set monitor mode to DMT
 hdmi_group=2
 # Set monitor resolution to 1024x768 XGA 60Hz (HDMI_DMT_XGA_60)
-hdmi_mode=16
+# hdmi_mode=16
+# have a properly sized image
+disable_overscan=1
 # Make display smaller to stop text spilling off the screen
-overscan_left=20
-overscan_right=12
-overscan_top=10
-overscan_bottom=10
+# overscan_left=20
+# overscan_right=12
+# overscan_top=10
+# overscan_bottom=10
 # For i2c & spi
 dtparam=i2c_arm=on
 dtparam=spi=on
