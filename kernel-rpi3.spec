@@ -117,14 +117,14 @@ dtparam=spi=on
 dtparam=audio=on
 EOF
 
-curl -L https://github.com/raspberrypi/firmware/raw/master/boot/bootcode.bin --output %{buildroot}/boot/bootcode.bin
-curl -L https://github.com/raspberrypi/firmware/raw/master/boot/fixup.dat --output %{buildroot}/boot/fixup.dat 
-curl -L https://github.com/raspberrypi/firmware/raw/master/boot/fixup_cd.dat --output %{buildroot}/boot/fixup_cd.dat
-curl -L https://github.com/raspberrypi/firmware/raw/master/boot/fixup_db.dat --output %{buildroot}/boot/fixup_db.dat
-curl -L https://github.com/raspberrypi/firmware/raw/master/boot/fixup_x.dat --output %{buildroot}/boot/fixup_x.dat
-curl -L https://github.com/raspberrypi/firmware/raw/master/boot/start.elf --output %{buildroot}/boot/start.elf
-curl -L https://github.com/raspberrypi/firmware/raw/master/boot/start_cd.elf --output %{buildroot}/boot/start_cd.elf
-curl -L https://github.com/raspberrypi/firmware/raw/master/boot/start_db.elf --output %{buildroot}/boot/start_db.elf
+curl -L https://github.com/raspberrypi/firmware/raw/stable/boot/bootcode.bin --output %{buildroot}/boot/bootcode.bin
+curl -L https://github.com/raspberrypi/firmware/raw/stable/boot/fixup.dat --output %{buildroot}/boot/fixup.dat
+curl -L https://github.com/raspberrypi/firmware/raw/stable/boot/fixup_cd.dat --output %{buildroot}/boot/fixup_cd.dat
+curl -L https://github.com/raspberrypi/firmware/raw/stable/boot/fixup_db.dat --output %{buildroot}/boot/fixup_db.dat
+curl -L https://github.com/raspberrypi/firmware/raw/stable/boot/fixup_x.dat --output %{buildroot}/boot/fixup_x.dat
+curl -L https://github.com/raspberrypi/firmware/raw/stable/boot/start.elf --output %{buildroot}/boot/start.elf
+curl -L https://github.com/raspberrypi/firmware/raw/stable/boot/start_cd.elf --output %{buildroot}/boot/start_cd.elf
+curl -L https://github.com/raspberrypi/firmware/raw/stable/boot/start_db.elf --output %{buildroot}/boot/start_db.elf
 
 %post
 #/sbin/dracut --gzip -o ifcfg -o lvm -o mdraid i\
